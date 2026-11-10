@@ -1,0 +1,6 @@
+{
+  "name": "AEGIS - Advanced Employment Guidance & Intelligence System",
+  "description": "Your Intelligence. Your Opportunities. Your Future. Privacy-first local AI job application agent powered by Ollama, SQLite, and Manifest V3 Chrome Extension.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
