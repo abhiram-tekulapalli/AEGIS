@@ -269,3 +269,27 @@ html, body {
   font-weight: 800;
   font-size: 14px;
 }
+
+.prof-subtab {
+  flex: 1;
+  padding: 4px 2px;
+  font-size: 10px;
+  font-weight: 700;
+  text-align: center;
+  background: transparent;
+  color: #a1a1aa;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.prof-subtab.active {
+  background: #ffffff;
+  color: #000000;
+}
+
+.prof-subtab:hover:not(.active) {
+  color: #ffffff;
+  background: #18181b;
+}

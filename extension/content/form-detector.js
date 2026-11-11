@@ -12,7 +12,8 @@ export class FormDetector {
     );
 
     elements.forEach((el, index) => {
-      if (el.offsetWidth === 0 && el.offsetHeight === 0) return;
+      // Don't skip hidden inputs if they have a name/id or are file inputs
+      if (el.getAttribute('type') === 'hidden' && !el.id && !el.getAttribute('name')) return;
 
       const id = el.id || `field-${index}`;
       const selector = this.getUniqueSelector(el);
