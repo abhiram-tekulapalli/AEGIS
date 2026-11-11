@@ -20,7 +20,7 @@ export class CoverLetterAgent implements BaseAgent<CoverLetterInput, string> {
     const fallbackGenerator = (): string => {
       return `Dear Hiring Team at ${input.job.company},
 
-I am excited to apply for the ${input.job.title} role. With my technical background in ${topSkills} and demonstrated experience at ${input.profile.workHistory[0]?.company || 'Apex Tech'}, I am eager to contribute to your engineering goals.
+I am excited to apply for the ${input.job.title} role. With my technical background in ${topSkills || 'software development'} and demonstrated experience in ${input.profile.workHistory[0]?.company || 'my previous engineering roles'}, I am eager to contribute to your engineering goals.
 
 My background directly matches your requirements in ${input.job.requiredSkills.slice(0, 3).join(', ')}. I look forward to connecting with your team.
 

@@ -136,7 +136,7 @@ export interface CandidateProfile {
   portfolio: string;
   
   // Sensitive / Legal & Preferences
-  workAuthorization: 'US Citizen' | 'Green Card' | 'H1B Visa' | 'Need Sponsorship' | 'Other';
+  workAuthorization: 'US Citizen' | 'Green Card' | 'H1B Visa' | 'Need Sponsorship' | 'Other' | '';
   requiresSponsorship: boolean;
   desiredSalary: string;
   noticePeriod: string;

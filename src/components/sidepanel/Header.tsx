@@ -111,7 +111,7 @@ export const Header: React.FC<HeaderProps> = ({
           className="text-[11px] font-mono text-neutral-700 dark:text-neutral-300 hover:underline flex items-center gap-1 cursor-pointer"
         >
           <ShieldCheck className="w-3.5 h-3.5 text-black dark:text-white" />
-          <span>Privacy Consent: <strong className={cloudConsent ? 'text-emerald-600 dark:text-emerald-400' : 'text-amber-600 dark:text-amber-400'}>{cloudConsent ? 'Granted' : 'Pending'}</strong></span>
+          <span>Privacy Consent: <strong className={cloudConsent ? 'text-black dark:text-white font-bold' : 'text-zinc-500 font-bold'}>{cloudConsent ? 'Granted' : 'Pending'}</strong></span>
         </button>
       </div>
     </header>

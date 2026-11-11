@@ -454,7 +454,7 @@ export default function App() {
               : viewMode === 'sidepanel_only'
               ? 'lg:col-span-8 lg:col-start-3 xl:col-span-6 xl:col-start-4'
               : 'lg:col-span-5 xl:col-span-4'
-          } bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xl overflow-hidden sticky top-6 flex flex-col max-h-[85vh]`}
+          } bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-xl overflow-hidden sticky top-6 flex flex-col max-h-[85vh]`}
         >
           {/* Sidepanel Header */}
           <Header
@@ -471,13 +471,13 @@ export default function App() {
           />
 
           {/* Sidepanel Navigation Bar */}
-          <nav className="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/60 px-2 py-1.5 text-xs font-medium shrink-0">
+          <nav className="flex items-center justify-between border-b border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/60 px-2 py-1.5 text-xs font-mono font-medium shrink-0">
             <button
               onClick={() => setActiveSidepanelTab('job')}
-              className={`flex-1 py-1 px-1 rounded-md transition-colors flex items-center justify-center gap-1 ${
+              className={`flex-1 py-1 px-1 rounded-md transition-colors flex items-center justify-center gap-1 cursor-pointer ${
                 activeSidepanelTab === 'job'
-                  ? 'bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 shadow-2xs font-semibold'
-                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'
+                  ? 'bg-black text-white dark:bg-white dark:text-black shadow-xs font-bold'
+                  : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100'
               }`}
             >
               <Briefcase className="w-3.5 h-3.5" />
@@ -486,10 +486,10 @@ export default function App() {
 
             <button
               onClick={() => setActiveSidepanelTab('plan')}
-              className={`flex-1 py-1 px-1 rounded-md transition-colors flex items-center justify-center gap-1 ${
+              className={`flex-1 py-1 px-1 rounded-md transition-colors flex items-center justify-center gap-1 cursor-pointer ${
                 activeSidepanelTab === 'plan'
-                  ? 'bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 shadow-2xs font-semibold'
-                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'
+                  ? 'bg-black text-white dark:bg-white dark:text-black shadow-xs font-bold'
+                  : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100'
               }`}
             >
               <CheckSquare className="w-3.5 h-3.5" />
@@ -498,10 +498,10 @@ export default function App() {
 
             <button
               onClick={() => setActiveSidepanelTab('resume')}
-              className={`flex-1 py-1 px-1 rounded-md transition-colors flex items-center justify-center gap-1 ${
+              className={`flex-1 py-1 px-1 rounded-md transition-colors flex items-center justify-center gap-1 cursor-pointer ${
                 activeSidepanelTab === 'resume'
-                  ? 'bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 shadow-2xs font-semibold'
-                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'
+                  ? 'bg-black text-white dark:bg-white dark:text-black shadow-xs font-bold'
+                  : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100'
               }`}
             >
               <FileText className="w-3.5 h-3.5" />
@@ -510,10 +510,10 @@ export default function App() {
 
             <button
               onClick={() => setActiveSidepanelTab('profile')}
-              className={`flex-1 py-1 px-1 rounded-md transition-colors flex items-center justify-center gap-1 ${
+              className={`flex-1 py-1 px-1 rounded-md transition-colors flex items-center justify-center gap-1 cursor-pointer ${
                 activeSidepanelTab === 'profile'
-                  ? 'bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 shadow-2xs font-semibold'
-                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'
+                  ? 'bg-black text-white dark:bg-white dark:text-black shadow-xs font-bold'
+                  : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100'
               }`}
             >
               <User className="w-3.5 h-3.5" />
@@ -522,10 +522,10 @@ export default function App() {
 
             <button
               onClick={() => setActiveSidepanelTab('tracker')}
-              className={`flex-1 py-1 px-1 rounded-md transition-colors flex items-center justify-center gap-1 ${
+              className={`flex-1 py-1 px-1 rounded-md transition-colors flex items-center justify-center gap-1 cursor-pointer ${
                 activeSidepanelTab === 'tracker'
-                  ? 'bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 shadow-2xs font-semibold'
-                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'
+                  ? 'bg-black text-white dark:bg-white dark:text-black shadow-xs font-bold'
+                  : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100'
               }`}
             >
               <Building2 className="w-3.5 h-3.5" />

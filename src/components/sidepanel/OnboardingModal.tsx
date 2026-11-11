@@ -161,7 +161,7 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
           </div>
 
           {saveMessage && (
-            <p className={`text-[11px] font-mono ${saveMessage.includes('Error') ? 'text-red-600 dark:text-red-400' : 'text-emerald-600 dark:text-emerald-400'}`}>
+            <p className="text-[11px] font-mono text-zinc-900 dark:text-zinc-100 font-bold">
               {saveMessage}
             </p>
           )}

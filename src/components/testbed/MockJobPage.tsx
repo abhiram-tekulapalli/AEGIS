@@ -95,43 +95,43 @@ export const MockJobPage: React.FC<MockJobPageProps> = ({ onFormFieldsDetected }
   };
 
   return (
-    <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm">
+    <div className="bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 p-6 shadow-sm font-sans">
       {/* Board Switcher Bar */}
-      <div className="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800 mb-5">
+      <div className="flex items-center justify-between pb-4 border-b border-zinc-200 dark:border-zinc-800 mb-5">
         <div className="flex items-center gap-2">
-          <Building2 className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
-          <span className="font-bold text-sm text-slate-900 dark:text-slate-100">
+          <Building2 className="w-5 h-5 text-zinc-900 dark:text-zinc-100" />
+          <span className="font-bold text-sm text-zinc-900 dark:text-zinc-100">
             Interactive Application Form Simulator
           </span>
         </div>
 
-        <div className="flex items-center gap-1 p-1 bg-slate-100 dark:bg-slate-800 rounded-lg text-xs font-medium">
+        <div className="flex items-center gap-1 p-1 bg-zinc-100 dark:bg-zinc-800 rounded-lg text-xs font-mono">
           <button
             onClick={() => setActiveBoard('greenhouse')}
-            className={`px-3 py-1 rounded-md transition-colors ${
+            className={`px-3 py-1 rounded-md transition-colors cursor-pointer ${
               activeBoard === 'greenhouse'
-                ? 'bg-white dark:bg-slate-700 text-slate-900 dark:text-slate-100 shadow-2xs font-semibold'
-                : 'text-slate-600 dark:text-slate-400'
+                ? 'bg-black text-white dark:bg-white dark:text-black shadow-xs font-bold'
+                : 'text-zinc-600 dark:text-zinc-400'
             }`}
           >
             Greenhouse Board
           </button>
           <button
             onClick={() => setActiveBoard('lever')}
-            className={`px-3 py-1 rounded-md transition-colors ${
+            className={`px-3 py-1 rounded-md transition-colors cursor-pointer ${
               activeBoard === 'lever'
-                ? 'bg-white dark:bg-slate-700 text-slate-900 dark:text-slate-100 shadow-2xs font-semibold'
-                : 'text-slate-600 dark:text-slate-400'
+                ? 'bg-black text-white dark:bg-white dark:text-black shadow-xs font-bold'
+                : 'text-zinc-600 dark:text-zinc-400'
             }`}
           >
             Lever Board
           </button>
           <button
             onClick={() => setActiveBoard('generic')}
-            className={`px-3 py-1 rounded-md transition-colors ${
+            className={`px-3 py-1 rounded-md transition-colors cursor-pointer ${
               activeBoard === 'generic'
-                ? 'bg-white dark:bg-slate-700 text-slate-900 dark:text-slate-100 shadow-2xs font-semibold'
-                : 'text-slate-600 dark:text-slate-400'
+                ? 'bg-black text-white dark:bg-white dark:text-black shadow-xs font-bold'
+                : 'text-zinc-600 dark:text-zinc-400'
             }`}
           >
             Generic Form
@@ -140,16 +140,16 @@ export const MockJobPage: React.FC<MockJobPageProps> = ({ onFormFieldsDetected }
       </div>
 
       {/* Simulated Job Listing Banner */}
-      <div className="mb-6 p-4 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/60">
+      <div className="mb-6 p-4 rounded-xl bg-zinc-50 dark:bg-zinc-800/60 border border-zinc-200/80 dark:border-zinc-700/60">
         <div className="flex items-start justify-between gap-3">
           <div>
-            <span className="text-xs font-mono uppercase text-indigo-600 dark:text-indigo-400 font-semibold">
+            <span className="text-xs font-mono uppercase text-zinc-900 dark:text-zinc-100 font-bold">
               {currentJob.company} • {currentJob.boardType.toUpperCase()}
             </span>
-            <h2 className="text-xl font-bold text-slate-900 dark:text-slate-100 mt-0.5">
+            <h2 className="text-xl font-bold text-zinc-900 dark:text-zinc-100 mt-0.5">
               {currentJob.title}
             </h2>
-            <div className="flex items-center gap-4 text-xs text-slate-500 dark:text-slate-400 mt-2">
+            <div className="flex items-center gap-4 text-xs text-zinc-500 dark:text-zinc-400 mt-2 font-mono">
               <span className="flex items-center gap-1">
                 <MapPin className="w-3.5 h-3.5" /> {currentJob.location}
               </span>
@@ -163,75 +163,75 @@ export const MockJobPage: React.FC<MockJobPageProps> = ({ onFormFieldsDetected }
             href={currentJob.url}
             target="_blank"
             rel="noreferrer"
-            className="text-xs font-mono text-indigo-600 dark:text-indigo-400 bg-white dark:bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700"
+            className="text-xs font-mono text-zinc-900 dark:text-zinc-100 bg-white dark:bg-zinc-900 px-3 py-1.5 rounded-lg border border-zinc-200 dark:border-zinc-700"
           >
             {currentJob.url.split('/')[2]}
           </a>
         </div>
 
-        <p className="text-xs text-slate-600 dark:text-slate-300 mt-3 leading-relaxed">
+        <p className="text-xs text-zinc-600 dark:text-zinc-300 mt-3 leading-relaxed font-sans">
           {currentJob.description}
         </p>
       </div>
 
       {/* Simulated Application Form */}
-      <form onSubmit={handleManualSubmit} className="space-y-4">
-        <h3 className="text-sm font-bold text-slate-900 dark:text-slate-100 border-b border-slate-200 dark:border-slate-800 pb-2">
+      <form onSubmit={handleManualSubmit} className="space-y-4 font-sans">
+        <h3 className="text-sm font-bold text-zinc-900 dark:text-zinc-100 border-b border-zinc-200 dark:border-zinc-800 pb-2 font-mono">
           Application Form ({activeBoard.toUpperCase()} Format)
         </h3>
 
         {submitNotice && (
-          <div className="p-3 bg-emerald-50 text-emerald-800 dark:bg-emerald-950/80 dark:text-emerald-300 border border-emerald-300 rounded-xl text-xs font-medium">
+          <div className="p-3 bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 border border-zinc-900 dark:border-zinc-100 rounded-xl text-xs font-mono font-bold">
             {submitNotice}
           </div>
         )}
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
           <div>
-            <label className="block font-medium text-slate-700 dark:text-slate-300 mb-1" htmlFor="first_name">
-              First Name <span className="text-rose-500">*</span>
+            <label className="block font-medium text-zinc-700 dark:text-zinc-300 mb-1 font-mono" htmlFor="first_name">
+              First Name <span className="text-zinc-900 dark:text-zinc-100 font-bold">*</span>
             </label>
             <input
               id="first_name"
               name="first_name"
               type="text"
-              placeholder="e.g. Jane"
+              placeholder="First Name"
               required
-              className="w-full p-2.5 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg text-slate-900 dark:text-slate-100 focus:ring-2 focus:ring-indigo-500 font-sans"
+              className="w-full p-2.5 bg-white dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-700 rounded-lg text-zinc-900 dark:text-zinc-100 focus:outline-hidden focus:border-zinc-900 dark:focus:border-zinc-100 font-sans"
             />
           </div>
 
           <div>
-            <label className="block font-medium text-slate-700 dark:text-slate-300 mb-1" htmlFor="last_name">
-              Last Name <span className="text-rose-500">*</span>
+            <label className="block font-medium text-zinc-700 dark:text-zinc-300 mb-1 font-mono" htmlFor="last_name">
+              Last Name <span className="text-zinc-900 dark:text-zinc-100 font-bold">*</span>
             </label>
             <input
               id="last_name"
               name="last_name"
               type="text"
-              placeholder="e.g. Doe"
+              placeholder="Last Name"
               required
-              className="w-full p-2.5 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg text-slate-900 dark:text-slate-100 focus:ring-2 focus:ring-indigo-500 font-sans"
+              className="w-full p-2.5 bg-white dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-700 rounded-lg text-zinc-900 dark:text-zinc-100 focus:outline-hidden focus:border-zinc-900 dark:focus:border-zinc-100 font-sans"
             />
           </div>
 
           <div>
-            <label className="block font-medium text-slate-700 dark:text-slate-300 mb-1" htmlFor="email">
-              Email Address <span className="text-rose-500">*</span>
+            <label className="block font-medium text-zinc-700 dark:text-zinc-300 mb-1 font-mono" htmlFor="email">
+              Email Address <span className="text-zinc-900 dark:text-zinc-100 font-bold">*</span>
             </label>
             <input
               id="email"
               name="email"
               type="email"
-              placeholder="jane.doe@example.com"
+              placeholder="your.email@domain.com"
               required
-              className="w-full p-2.5 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg text-slate-900 dark:text-slate-100 focus:ring-2 focus:ring-indigo-500 font-mono"
+              className="w-full p-2.5 bg-white dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-700 rounded-lg text-zinc-900 dark:text-zinc-100 focus:outline-hidden focus:border-zinc-900 dark:focus:border-zinc-100 font-mono"
             />
           </div>
 
           <div>
-            <label className="block font-medium text-slate-700 dark:text-slate-300 mb-1" htmlFor="phone">
-              Phone Number <span className="text-rose-500">*</span>
+            <label className="block font-medium text-zinc-700 dark:text-zinc-300 mb-1 font-mono" htmlFor="phone">
+              Phone Number <span className="text-zinc-900 dark:text-zinc-100 font-bold">*</span>
             </label>
             <input
               id="phone"
@@ -239,12 +239,12 @@ export const MockJobPage: React.FC<MockJobPageProps> = ({ onFormFieldsDetected }
               type="tel"
               placeholder="+1 (555) 000-0000"
               required
-              className="w-full p-2.5 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg text-slate-900 dark:text-slate-100 focus:ring-2 focus:ring-indigo-500 font-mono"
+              className="w-full p-2.5 bg-white dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-700 rounded-lg text-zinc-900 dark:text-zinc-100 focus:outline-hidden focus:border-zinc-900 dark:focus:border-zinc-100 font-mono"
             />
           </div>
 
           <div>
-            <label className="block font-medium text-slate-700 dark:text-slate-300 mb-1" htmlFor="linkedin_url">
+            <label className="block font-medium text-zinc-700 dark:text-zinc-300 mb-1 font-mono" htmlFor="linkedin_url">
               LinkedIn Profile URL
             </label>
             <input
@@ -252,12 +252,12 @@ export const MockJobPage: React.FC<MockJobPageProps> = ({ onFormFieldsDetected }
               name="linkedin_url"
               type="text"
               placeholder="https://linkedin.com/in/username"
-              className="w-full p-2.5 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg text-slate-900 dark:text-slate-100 focus:ring-2 focus:ring-indigo-500 font-mono"
+              className="w-full p-2.5 bg-white dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-700 rounded-lg text-zinc-900 dark:text-zinc-100 focus:outline-hidden focus:border-zinc-900 dark:focus:border-zinc-100 font-mono"
             />
           </div>
 
           <div>
-            <label className="block font-medium text-slate-700 dark:text-slate-300 mb-1" htmlFor="github_url">
+            <label className="block font-medium text-zinc-700 dark:text-zinc-300 mb-1 font-mono" htmlFor="github_url">
               GitHub or Portfolio URL
             </label>
             <input
@@ -265,18 +265,18 @@ export const MockJobPage: React.FC<MockJobPageProps> = ({ onFormFieldsDetected }
               name="github_url"
               type="text"
               placeholder="https://github.com/username"
-              className="w-full p-2.5 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg text-slate-900 dark:text-slate-100 focus:ring-2 focus:ring-indigo-500 font-mono"
+              className="w-full p-2.5 bg-white dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-700 rounded-lg text-zinc-900 dark:text-zinc-100 focus:outline-hidden focus:border-zinc-900 dark:focus:border-zinc-100 font-mono"
             />
           </div>
 
           <div>
-            <label className="block font-medium text-slate-700 dark:text-slate-300 mb-1" htmlFor="work_authorization">
+            <label className="block font-medium text-zinc-700 dark:text-zinc-300 mb-1 font-mono" htmlFor="work_authorization">
               Are you legally authorized to work in the US?
             </label>
             <select
               id="work_authorization"
               name="work_authorization"
-              className="w-full p-2.5 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg text-slate-900 dark:text-slate-100 focus:ring-2 focus:ring-indigo-500 font-sans"
+              className="w-full p-2.5 bg-white dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-700 rounded-lg text-zinc-900 dark:text-zinc-100 focus:outline-hidden focus:border-zinc-900 dark:focus:border-zinc-100 font-mono"
             >
               <option value="">Select option...</option>
               <option value="US Citizen">US Citizen</option>
@@ -287,7 +287,7 @@ export const MockJobPage: React.FC<MockJobPageProps> = ({ onFormFieldsDetected }
           </div>
 
           <div>
-            <label className="block font-medium text-slate-700 dark:text-slate-300 mb-1" htmlFor="desired_salary">
+            <label className="block font-medium text-zinc-700 dark:text-zinc-300 mb-1 font-mono" htmlFor="desired_salary">
               Desired Salary Expectations
             </label>
             <input
@@ -295,13 +295,13 @@ export const MockJobPage: React.FC<MockJobPageProps> = ({ onFormFieldsDetected }
               name="desired_salary"
               type="text"
               placeholder="e.g. $165,000 USD"
-              className="w-full p-2.5 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg text-slate-900 dark:text-slate-100 focus:ring-2 focus:ring-indigo-500 font-sans"
+              className="w-full p-2.5 bg-white dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-700 rounded-lg text-zinc-900 dark:text-zinc-100 focus:outline-hidden focus:border-zinc-900 dark:focus:border-zinc-100 font-mono"
             />
           </div>
         </div>
 
         <div>
-          <label className="block font-medium text-slate-700 dark:text-slate-300 mb-1" htmlFor="cover_letter">
+          <label className="block font-medium text-zinc-700 dark:text-zinc-300 mb-1 font-mono" htmlFor="cover_letter">
             Cover Letter / Additional Notes
           </label>
           <textarea
@@ -309,20 +309,20 @@ export const MockJobPage: React.FC<MockJobPageProps> = ({ onFormFieldsDetected }
             name="cover_letter"
             rows={4}
             placeholder="Introduce yourself and explain why you're a great fit for this role..."
-            className="w-full p-2.5 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg text-slate-900 dark:text-slate-100 focus:ring-2 focus:ring-indigo-500 font-sans"
+            className="w-full p-2.5 bg-white dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-700 rounded-lg text-zinc-900 dark:text-zinc-100 focus:outline-hidden focus:border-zinc-900 dark:focus:border-zinc-100 font-sans"
           />
         </div>
 
         {/* Submit Button */}
         <div className="pt-2 flex items-center justify-between">
-          <div className="flex items-center gap-1.5 text-xs text-amber-600 dark:text-amber-400 font-medium">
+          <div className="flex items-center gap-1.5 text-xs text-zinc-600 dark:text-zinc-400 font-mono">
             <Info className="w-4 h-4 shrink-0" />
             <span>AEGIS agent will populate fields above but will NEVER click Submit automatically.</span>
           </div>
 
           <button
             type="submit"
-            className="py-2.5 px-5 bg-slate-900 hover:bg-slate-800 text-white font-medium text-xs rounded-xl transition-colors flex items-center gap-2 shadow-xs"
+            className="py-2.5 px-5 bg-black hover:bg-neutral-800 text-white dark:bg-white dark:text-black dark:hover:bg-neutral-200 font-mono font-bold text-xs rounded-xl transition-colors flex items-center gap-2 shadow-xs cursor-pointer"
           >
             <Send className="w-3.5 h-3.5" />
             Submit Application Manually

@@ -9,14 +9,14 @@ interface ActivityHistoryViewProps {
 export const ActivityHistoryView: React.FC<ActivityHistoryViewProps> = ({ history }) => {
   if (history.length === 0) {
     return (
-      <div className="p-6 text-center text-slate-500 dark:text-slate-400">
-        <div className="w-12 h-12 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center mx-auto mb-3">
-          <History className="w-6 h-6 text-slate-400" />
+      <div className="p-6 text-center text-zinc-500 font-sans">
+        <div className="w-10 h-10 border border-zinc-300 dark:border-zinc-700 flex items-center justify-center mx-auto mb-3">
+          <History className="w-5 h-5 text-zinc-400" />
         </div>
-        <h3 className="text-sm font-semibold text-slate-800 dark:text-slate-200">
+        <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-black dark:text-white">
           No Activity Audit Logs Recorded
         </h3>
-        <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 max-w-xs mx-auto">
+        <p className="text-xs text-zinc-500 mt-1 max-w-xs mx-auto">
           When you execute form auto-fill plans, application audit logs will be stored in your local SQLite database.
         </p>
       </div>
@@ -24,13 +24,13 @@ export const ActivityHistoryView: React.FC<ActivityHistoryViewProps> = ({ histor
   }
 
   return (
-    <div className="p-4 space-y-3">
-      <div className="flex items-center justify-between pb-2 border-b border-slate-200 dark:border-slate-800 text-xs">
-        <h3 className="font-semibold text-slate-900 dark:text-slate-100 flex items-center gap-1.5">
-          <History className="w-3.5 h-3.5 text-indigo-500" />
+    <div className="p-4 space-y-3 font-sans">
+      <div className="flex items-center justify-between pb-2 border-b border-zinc-200 dark:border-zinc-800 text-xs font-mono">
+        <h3 className="font-bold text-zinc-900 dark:text-zinc-100 flex items-center gap-1.5">
+          <History className="w-3.5 h-3.5 text-zinc-900 dark:text-zinc-100" />
           Local Activity Audit Log
         </h3>
-        <span className="font-mono text-[11px] text-slate-500">
+        <span className="text-[11px] text-zinc-500">
           {history.length} Record{history.length === 1 ? '' : 's'}
         </span>
       </div>
@@ -39,25 +39,25 @@ export const ActivityHistoryView: React.FC<ActivityHistoryViewProps> = ({ histor
         {history.map((item) => (
           <div
             key={item.id}
-            className="p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs space-y-1.5"
+            className="p-3 rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-xs space-y-1.5"
           >
             <div className="flex items-start justify-between gap-2">
               <div>
-                <h4 className="font-semibold text-slate-900 dark:text-slate-100 leading-tight">
+                <h4 className="font-semibold text-zinc-900 dark:text-zinc-100 leading-tight">
                   {item.jobTitle}
                 </h4>
-                <p className="text-slate-500 dark:text-slate-400 text-[11px]">
-                  {item.company} • <span className="uppercase font-mono text-[10px]">{item.boardType}</span>
+                <p className="text-zinc-500 dark:text-zinc-400 text-[11px] font-mono mt-0.5">
+                  {item.company} • <span className="uppercase text-[10px]">{item.boardType}</span>
                 </p>
               </div>
 
-              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-medium bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-400 border border-emerald-200/60 dark:border-emerald-800/60">
+              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-mono font-medium bg-zinc-100 text-zinc-900 dark:bg-zinc-800 dark:text-zinc-100 border border-zinc-300 dark:border-zinc-700">
                 <CheckCircle2 className="w-3 h-3" />
                 {item.filledActionsCount || 0} Fields Verified
               </span>
             </div>
 
-            <div className="flex items-center justify-between pt-1 border-t border-slate-100 dark:border-slate-800/60 text-[10px] text-slate-400">
+            <div className="flex items-center justify-between pt-1 border-t border-zinc-100 dark:border-zinc-800 text-[10px] text-zinc-400 font-mono">
               <span className="flex items-center gap-1">
                 <Clock className="w-3 h-3" />
                 {new Date(item.dateAnalyzed).toLocaleDateString()}
@@ -67,7 +67,7 @@ export const ActivityHistoryView: React.FC<ActivityHistoryViewProps> = ({ histor
                   href={item.jobUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="hover:text-indigo-500 flex items-center gap-1"
+                  className="hover:text-black dark:hover:text-white flex items-center gap-1 underline"
                 >
                   View Job <ExternalLink className="w-2.5 h-2.5" />
                 </a>

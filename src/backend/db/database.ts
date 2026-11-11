@@ -29,96 +29,36 @@ interface DBData {
 
 const DEFAULT_PROFILE: CandidateProfile = {
   id: 'c-default',
-  firstName: 'Alex',
-  lastName: 'Morgan',
-  email: 'alex.morgan@example.com',
-  phone: '+1 (555) 234-5678',
-  location: 'San Francisco, CA',
-  headline: 'Senior Full Stack Software Engineer',
-  summary: 'Senior Software Engineer with 6+ years of experience building modern web applications, cloud-native services, and local AI integrations using React, TypeScript, Node.js, and Python.',
-  website: 'https://alexmorgan.dev',
-  linkedIn: 'https://linkedin.com/in/alexmorgan-dev',
-  github: 'https://github.com/alexmorgan-dev',
-  portfolio: 'https://alexmorgan.dev/projects',
-  workAuthorization: 'US Citizen',
+  firstName: '',
+  lastName: '',
+  email: '',
+  phone: '',
+  location: '',
+  headline: '',
+  summary: '',
+  website: '',
+  linkedIn: '',
+  github: '',
+  portfolio: '',
+  workAuthorization: '',
   requiresSponsorship: false,
-  desiredSalary: '$160,000 - $185,000 USD',
-  noticePeriod: '2 Weeks',
-  desiredJobTitles: ['Senior Full Stack Engineer', 'Staff Software Engineer', 'AI Platform Architect'],
+  desiredSalary: '',
+  noticePeriod: '',
+  desiredJobTitles: [],
   preferredWorkType: 'Remote',
   openToRelocation: false,
-  yearsOfExperience: 6,
-  skills: [
-    'TypeScript', 'React', 'Node.js', 'Express', 'Next.js', 
-    'Python', 'PostgreSQL', 'SQLite', 'TailwindCSS', 'REST APIs', 
-    'GraphQL', 'Docker', 'AWS', 'Git', 'Vite', 'Ollama', 'System Architecture'
-  ],
-  programmingLanguages: ['TypeScript', 'JavaScript', 'Python', 'SQL', 'HTML/CSS'],
-  toolsAndFrameworks: ['React', 'Node.js', 'Express', 'Vite', 'Docker', 'Git', 'Zod', 'Ollama'],
-  education: [
-    {
-      id: 'edu-1',
-      institution: 'University of California, Berkeley',
-      degree: 'Bachelor of Science',
-      fieldOfStudy: 'Computer Science',
-      graduationYear: '2020',
-      evidenceSource: 'manual_entry',
-    }
-  ],
-  workHistory: [
-    {
-      id: 'exp-1',
-      company: 'Apex Tech Solutions',
-      role: 'Senior Software Engineer',
-      startDate: '2022-03',
-      endDate: 'Present',
-      isCurrent: true,
-      highlights: [
-        'Architected and deployed microservices handling 2M+ daily active requests with 99.98% uptime.',
-        'Led transition to Vite and React 19, reducing frontend build times by 65%.',
-        'Implemented local AI agent pipelines for internal developer tooling using Ollama and Llama 3.'
-      ],
-      technologiesUsed: ['TypeScript', 'React', 'Node.js', 'Ollama', 'Docker'],
-      evidenceSource: 'manual_entry',
-    },
-    {
-      id: 'exp-2',
-      company: 'Vanguard Systems',
-      role: 'Full Stack Developer',
-      startDate: '2020-06',
-      endDate: '2022-02',
-      isCurrent: false,
-      highlights: [
-        'Developed customer-facing dashboard and automated analytics pipeline with TypeScript and PostgreSQL.',
-        'Engineered responsive web client and RESTful API endpoints for multi-tenant SaaS application.'
-      ],
-      technologiesUsed: ['TypeScript', 'React', 'PostgreSQL', 'Express'],
-      evidenceSource: 'manual_entry',
-    }
-  ],
+  yearsOfExperience: 0,
+  skills: [],
+  programmingLanguages: [],
+  toolsAndFrameworks: [],
+  education: [],
+  workHistory: [],
   internships: [],
-  projects: [
-    {
-      id: 'proj-1',
-      title: 'AEGIS Local Agent',
-      description: 'Privacy-first local job application agent powered by Ollama LLM and SQLite.',
-      role: 'Lead Architect',
-      technologies: ['TypeScript', 'React', 'Express', 'SQLite', 'Ollama'],
-      url: 'https://github.com/alexmorgan-dev/aegis',
-      outcomes: ['Integrated offline LLM inference with zero data leakage.'],
-      evidenceSource: 'manual_entry',
-    }
-  ],
+  projects: [],
   certifications: [],
-  achievements: [
-    'Winner of 2024 Developer Productivity Hackathon',
-    'Author of open-source local LLM TypeScript SDK'
-  ],
+  achievements: [],
   resumeDocuments: [],
-  customAnswers: {
-    'why_company': 'I am deeply inspired by your team\'s mission to build user-focused, privacy-respecting products. My background in high-performance web applications matches your current engineering roadmap.',
-    'greatest_achievement': 'Designing an automated offline-first agent system that saved our engineering team 15+ hours per week in routine workflows.',
-  },
+  customAnswers: {},
   updatedAt: new Date().toISOString(),
 };
 

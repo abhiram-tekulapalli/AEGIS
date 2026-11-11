@@ -389,6 +389,8 @@ apiRouter.get('/extension/bundle', async (req: Request, res: Response) => {
     
     const manifestContent = fs.readFileSync(path.resolve(process.cwd(), 'extension/manifest.json'), 'utf-8');
     const sidepanelHtmlContent = fs.readFileSync(path.resolve(process.cwd(), 'extension/sidepanel.html'), 'utf-8');
+    const sidepanelJsContent = fs.readFileSync(path.resolve(process.cwd(), 'extension/sidepanel.js'), 'utf-8');
+    const sidepanelCssContent = fs.readFileSync(path.resolve(process.cwd(), 'extension/sidepanel.css'), 'utf-8');
     const serviceWorkerContent = fs.readFileSync(path.resolve(process.cwd(), 'extension/background/service-worker.js'), 'utf-8');
     const contentScriptContent = fs.readFileSync(path.resolve(process.cwd(), 'extension/content/content-script.js'), 'utf-8');
     const domReaderContent = fs.readFileSync(path.resolve(process.cwd(), 'extension/content/dom-reader.js'), 'utf-8');
@@ -398,6 +400,8 @@ apiRouter.get('/extension/bundle', async (req: Request, res: Response) => {
 
     zip.file('manifest.json', manifestContent);
     zip.file('sidepanel.html', sidepanelHtmlContent);
+    zip.file('sidepanel.js', sidepanelJsContent);
+    zip.file('sidepanel.css', sidepanelCssContent);
     zip.file('background/service-worker.js', serviceWorkerContent);
     zip.file('content/content-script.js', contentScriptContent);
     zip.file('content/dom-reader.js', domReaderContent);

@@ -63,7 +63,7 @@ Generate JSON with:
 
 I am writing to express my strong interest in the ${job.title} position. Having reviewed your engineering roadmap and focus on ${job.requiredSkills.slice(0, 3).join(', ')}, I am confident that my background in full-stack engineering and agent architectures aligns directly with your team's objectives.
 
-In my recent work at ${profile.workHistory[0]?.company || 'Apex Tech'}, I led technical initiatives that improved system uptime, reduced build latencies, and streamlined user workflows. My experience with ${topSkills.slice(0, 3).join(', ')} enables me to contribute immediately to ${job.company}.
+In my recent work at ${profile.workHistory[0]?.company || 'my previous software engineering roles'}, I led technical initiatives that improved system uptime, reduced build latencies, and streamlined user workflows. My experience with ${topSkills.slice(0, 3).join(', ')} enables me to contribute immediately to ${job.company}.
 
 I look forward to discussing how my experience can support your team's goals.
 
