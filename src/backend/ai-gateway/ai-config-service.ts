@@ -9,11 +9,31 @@ export class AIConfigurationService {
   }
 
   public getGeminiApiKey(): string | undefined {
-    return process.env.GEMINI_API_KEY;
+    const envKey = process.env.GEMINI_API_KEY;
+    if (envKey && envKey.trim().length > 0 && envKey !== 'MY_GEMINI_API_KEY') {
+      return envKey.trim();
+    }
+    return db.getApiKey();
+  }
+
+  public setGeminiApiKey(apiKey: string): void {
+    const clean = apiKey.trim();
+    process.env.GEMINI_API_KEY = clean;
+    db.setApiKey(clean);
   }
 
   public getGeminiModel(): string {
-    return process.env.GEMINI_MODEL || 'gemini-3.8-flash';
+    const envModel = process.env.GEMINI_MODEL;
+    if (envModel && envModel.trim().length > 0) {
+      return envModel.trim();
+    }
+    return db.getGeminiModel() || 'gemini-3.8-flash';
+  }
+
+  public setGeminiModel(model: string): void {
+    const clean = model.trim();
+    process.env.GEMINI_MODEL = clean;
+    db.setGeminiModel(clean);
   }
 
   public getTimeoutMs(): number {

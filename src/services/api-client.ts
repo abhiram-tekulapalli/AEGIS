@@ -36,7 +36,7 @@ export class RolePilotAPIClient {
     return res.json();
   }
 
-  public async updateOllamaConfig(config: { model?: string; useMockFallback?: boolean; cloudConsent?: boolean }) {
+  public async updateOllamaConfig(config: { model?: string; useMockFallback?: boolean; cloudConsent?: boolean; apiKey?: string }) {
     const res = await fetch(`${API_BASE}/ai/config`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

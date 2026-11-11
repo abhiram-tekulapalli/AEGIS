@@ -1,5 +1,5 @@
 import React from 'react';
-import { Cpu, Moon, Sun, RefreshCw, ShieldCheck, AlertCircle } from 'lucide-react';
+import { Cpu, Moon, Sun, RefreshCw, ShieldCheck, AlertCircle, Settings } from 'lucide-react';
 import { SystemHealth } from '@/shared/types';
 
 interface HeaderProps {
@@ -77,6 +77,15 @@ export const Header: React.FC<HeaderProps> = ({
             title="Refresh AI connection status"
           >
             <RefreshCw className="w-3.5 h-3.5" />
+          </button>
+
+          {/* Settings / API Key button */}
+          <button
+            onClick={onOpenOnboarding}
+            className="p-1 text-neutral-500 hover:text-black dark:hover:text-white transition-colors cursor-pointer"
+            title="Open API Key Settings"
+          >
+            <Settings className="w-3.5 h-3.5" />
           </button>
 
           {/* Dark / Light Mode Toggle */}

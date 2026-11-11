@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Terminal, CheckCircle2, AlertTriangle, ShieldCheck, Zap, X, Lock, ExternalLink } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Key, CheckCircle2, AlertTriangle, ShieldCheck, Zap, X, Lock, ExternalLink, Save } from 'lucide-react';
 import { apiClient } from '../../services/api-client';
 
 interface OnboardingModalProps {
@@ -18,9 +18,48 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
   onEnableMock,
 }) => {
   const [cloudConsent, setCloudConsent] = useState<boolean>(true);
+  const [apiKeyInput, setApiKeyInput] = useState<string>('');
+  const [apiKeyMasked, setApiKeyMasked] = useState<string | null>(null);
   const [isUpdatingConsent, setIsUpdatingConsent] = useState<boolean>(false);
+  const [isSavingKey, setIsSavingKey] = useState<boolean>(false);
+  const [saveMessage, setSaveMessage] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (isOpen) {
+      loadConfig();
+    }
+  }, [isOpen]);
+
+  const loadConfig = async () => {
+    try {
+      const cfg = await apiClient.getOllamaModels();
+      setCloudConsent(cfg.cloudConsentGranted ?? true);
+      setApiKeyMasked(cfg.apiKeyMasked || null);
+    } catch (err) {
+      console.warn('Failed to load AI config:', err);
+    }
+  };
 
   if (!isOpen) return null;
+
+  const handleSaveApiKey = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!apiKeyInput.trim()) return;
+
+    setIsSavingKey(true);
+    setSaveMessage(null);
+    try {
+      const res = await apiClient.updateOllamaConfig({ apiKey: apiKeyInput.trim() });
+      setApiKeyMasked(res.apiKeyMasked || 'Configured');
+      setApiKeyInput('');
+      setSaveMessage('Gemini API key saved & verified successfully!');
+      setTimeout(() => setSaveMessage(null), 4000);
+    } catch (err: any) {
+      setSaveMessage('Error saving API key: ' + err.message);
+    } finally {
+      setIsSavingKey(false);
+    }
+  };
 
   const handleToggleConsent = async () => {
     setIsUpdatingConsent(true);
@@ -52,15 +91,15 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
           </div>
           <div>
             <h2 className="text-base font-extrabold text-zinc-900 dark:text-zinc-100 tracking-tight">
-              AEGIS Cloud AI Connection & Privacy Guide
+              AEGIS Settings & Gemini API Key
             </h2>
             <p className="text-[11px] text-zinc-500 font-mono">
-              Powered by Google Gemini Developer API (Free-Tier Eligible)
+              Configure your Google Gemini Developer API key directly
             </p>
           </div>
         </div>
 
-        {/* Status Box */}
+        {/* Connection Status Box */}
         <div
           className={`p-3.5 border rounded-lg text-xs font-mono ${
             ollamaConnected && cloudConsent
@@ -78,16 +117,67 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
               <span className="font-bold uppercase block tracking-wider text-[11px]">
                 {ollamaConnected && cloudConsent
                   ? 'Gemini Cloud AI Service Connected'
-                  : 'Cloud AI Inference Paused / Action Required'}
+                  : 'API Key or Cloud Consent Required'}
               </span>
               <p className="text-[11px] leading-relaxed font-sans opacity-90">
                 {ollamaConnected && cloudConsent
-                  ? 'AEGIS is connected to the Google Gemini Developer API (gemini-3.8-flash). Cloud AI inference is active.'
-                  : 'Gemini API key is not detected or Cloud Privacy Consent is pending. Follow the setup steps below.'}
+                  ? `Active key: ${apiKeyMasked || 'Configured'}. AEGIS is connected to Google Gemini API (gemini-3.8-flash).`
+                  : 'Enter your Gemini API key below to connect AEGIS to cloud AI inference.'}
               </p>
             </div>
           </div>
         </div>
+
+        {/* Direct API Key Settings Input */}
+        <form onSubmit={handleSaveApiKey} className="p-4 rounded-lg bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-700 space-y-3">
+          <div className="flex items-center justify-between">
+            <label className="text-xs font-bold text-zinc-900 dark:text-zinc-100 flex items-center gap-1.5 font-mono uppercase tracking-wider">
+              <Key className="w-4 h-4 text-zinc-900 dark:text-zinc-100" />
+              Gemini API Key
+            </label>
+            {apiKeyMasked && (
+              <span className="text-[10px] font-mono text-zinc-500 bg-zinc-200 dark:bg-zinc-700 px-2 py-0.5 rounded">
+                Active: {apiKeyMasked}
+              </span>
+            )}
+          </div>
+
+          <div className="flex gap-2">
+            <input
+              type="password"
+              placeholder="Paste your Gemini API Key here (e.g. AIzaSy...)"
+              value={apiKeyInput}
+              onChange={(e) => setApiKeyInput(e.target.value)}
+              className="flex-1 px-3 py-2 text-xs font-mono bg-white dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-700 rounded-lg text-zinc-900 dark:text-zinc-100 focus:outline-hidden focus:border-zinc-900 dark:focus:border-zinc-100"
+            />
+            <button
+              type="submit"
+              disabled={isSavingKey || !apiKeyInput.trim()}
+              className="px-4 py-2 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 font-bold text-xs rounded-lg hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-colors flex items-center gap-1.5 cursor-pointer disabled:opacity-50"
+            >
+              <Save className="w-3.5 h-3.5" />
+              {isSavingKey ? 'Saving...' : 'Save Key'}
+            </button>
+          </div>
+
+          {saveMessage && (
+            <p className={`text-[11px] font-mono ${saveMessage.includes('Error') ? 'text-red-600 dark:text-red-400' : 'text-emerald-600 dark:text-emerald-400'}`}>
+              {saveMessage}
+            </p>
+          )}
+
+          <p className="text-[11px] text-zinc-500 leading-relaxed font-sans">
+            Need a free API key? Obtain one instantly from{' '}
+            <a
+              href="https://aistudio.google.com/app/apikey"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1 text-zinc-900 dark:text-zinc-100 font-bold underline font-mono"
+            >
+              Google AI Studio <ExternalLink className="w-3 h-3 inline" />
+            </a>
+          </p>
+        </form>
 
         {/* Privacy Disclosure & Consent Switch */}
         <div className="p-3.5 rounded-lg bg-zinc-50 dark:bg-zinc-900/60 border border-zinc-200 dark:border-zinc-800 space-y-2.5">
@@ -111,55 +201,6 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
           <p className="text-[11px] text-zinc-600 dark:text-zinc-400 leading-relaxed font-sans">
             When enabled, relevant job descriptions and sanitized candidate qualifications are transmitted to Google Gemini Developer API for model reasoning. AEGIS never transmits passwords, credentials, or unapproved data.
           </p>
-        </div>
-
-        {/* Setup Instructions */}
-        <div className="space-y-2.5">
-          <h3 className="text-[11px] font-bold text-zinc-700 dark:text-zinc-300 tracking-wider uppercase font-mono">
-            Environment Setup (Free Tier):
-          </h3>
-
-          <div className="space-y-2 text-xs">
-            <div className="p-3 rounded-lg bg-zinc-50 dark:bg-zinc-800/60 border border-zinc-200 dark:border-zinc-800 space-y-1">
-              <span className="font-semibold text-zinc-900 dark:text-zinc-100 block">
-                1. Get Free Gemini API Key
-              </span>
-              <p className="text-zinc-600 dark:text-zinc-400 text-[11px] leading-relaxed">
-                Obtain a free API key from Google AI Studio (no credit card required):
-              </p>
-              <a
-                href="https://aistudio.google.com/app/apikey"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-1 text-[11px] text-zinc-900 dark:text-zinc-100 font-mono font-bold hover:underline"
-              >
-                https://aistudio.google.com/app/apikey <ExternalLink className="w-3 h-3" />
-              </a>
-            </div>
-
-            <div className="p-3 rounded-lg bg-zinc-50 dark:bg-zinc-800/60 border border-zinc-200 dark:border-zinc-800 space-y-1">
-              <span className="font-semibold text-zinc-900 dark:text-zinc-100 block">
-                2. Configure Environment Variable
-              </span>
-              <p className="text-zinc-600 dark:text-zinc-400 text-[11px] leading-relaxed">
-                Add your key to the backend environment or <code>.env</code> file:
-              </p>
-              <div className="bg-zinc-900 text-zinc-100 p-2 rounded-md font-mono text-[11px] border border-zinc-800 space-y-1">
-                <div>AI_PROVIDER=gemini</div>
-                <div>GEMINI_API_KEY=YOUR_FREE_GEMINI_API_KEY</div>
-                <div>GEMINI_MODEL=gemini-3.8-flash</div>
-              </div>
-            </div>
-
-            <div className="p-3 rounded-lg bg-zinc-50 dark:bg-zinc-800/60 border border-zinc-200 dark:border-zinc-800 space-y-1">
-              <span className="font-semibold text-zinc-900 dark:text-zinc-100 block">
-                3. Zero-Cost Safeguard Guarantee
-              </span>
-              <p className="text-zinc-600 dark:text-zinc-400 text-[11px] leading-relaxed">
-                AEGIS operates strictly within Gemini free-tier limits. It will never automatically switch to paid models or enable paid billing.
-              </p>
-            </div>
-          </div>
         </div>
 
         {/* Local Test Engine & Close Buttons */}

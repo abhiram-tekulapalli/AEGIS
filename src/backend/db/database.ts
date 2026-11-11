@@ -23,6 +23,8 @@ interface DBData {
   fieldRules: Record<string, string>;
   cloudConsent?: { granted: boolean; grantedAt?: string };
   aiUsageStats?: AIUsageStats;
+  apiKey?: string;
+  geminiModel?: string;
 }
 
 const DEFAULT_PROFILE: CandidateProfile = {
@@ -272,6 +274,24 @@ export class RolePilotDatabase {
 
   public saveAIUsageStats(stats: AIUsageStats): void {
     this.data.aiUsageStats = stats;
+    this.saveDatabase();
+  }
+
+  public getApiKey(): string | undefined {
+    return this.data.apiKey;
+  }
+
+  public setApiKey(apiKey: string): void {
+    this.data.apiKey = apiKey.trim();
+    this.saveDatabase();
+  }
+
+  public getGeminiModel(): string | undefined {
+    return this.data.geminiModel;
+  }
+
+  public setGeminiModel(model: string): void {
+    this.data.geminiModel = model.trim();
     this.saveDatabase();
   }
 }

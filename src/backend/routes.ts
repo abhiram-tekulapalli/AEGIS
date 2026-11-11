@@ -107,8 +107,14 @@ apiRouter.get('/ollama/models', getAiConfigHandler);
  * POST /api/ai/config & POST /api/ollama/config (backward compatibility)
  */
 const postAiConfigHandler = (req: Request, res: Response) => {
-  const { model, useMockFallback, cloudConsent } = req.body;
+  const { model, useMockFallback, cloudConsent, apiKey } = req.body;
 
+  if (typeof apiKey === 'string' && apiKey.trim().length > 0) {
+    aiConfigService.setGeminiApiKey(apiKey.trim());
+  }
+  if (typeof model === 'string' && model.trim().length > 0) {
+    aiConfigService.setGeminiModel(model.trim());
+  }
   if (typeof useMockFallback === 'boolean') {
     aiConfigService.setMockFallback(useMockFallback);
   }
@@ -383,11 +389,12 @@ apiRouter.get('/extension/bundle', async (req: Request, res: Response) => {
     
     const manifestContent = fs.readFileSync(path.resolve(process.cwd(), 'extension/manifest.json'), 'utf-8');
     const sidepanelHtmlContent = fs.readFileSync(path.resolve(process.cwd(), 'extension/sidepanel.html'), 'utf-8');
-    const serviceWorkerContent = fs.readFileSync(path.resolve(process.cwd(), 'extension/background/service-worker.ts'), 'utf-8');
-    const contentScriptContent = fs.readFileSync(path.resolve(process.cwd(), 'extension/content/content-script.ts'), 'utf-8');
-    const domReaderContent = fs.readFileSync(path.resolve(process.cwd(), 'extension/content/dom-reader.ts'), 'utf-8');
-    const formDetectorContent = fs.readFileSync(path.resolve(process.cwd(), 'extension/content/form-detector.ts'), 'utf-8');
-    const formFillerContent = fs.readFileSync(path.resolve(process.cwd(), 'extension/content/form-filler.ts'), 'utf-8');
+    const serviceWorkerContent = fs.readFileSync(path.resolve(process.cwd(), 'extension/background/service-worker.js'), 'utf-8');
+    const contentScriptContent = fs.readFileSync(path.resolve(process.cwd(), 'extension/content/content-script.js'), 'utf-8');
+    const domReaderContent = fs.readFileSync(path.resolve(process.cwd(), 'extension/content/dom-reader.js'), 'utf-8');
+    const formDetectorContent = fs.readFileSync(path.resolve(process.cwd(), 'extension/content/form-detector.js'), 'utf-8');
+    const formFillerContent = fs.readFileSync(path.resolve(process.cwd(), 'extension/content/form-filler.js'), 'utf-8');
+    const pageObserverContent = fs.readFileSync(path.resolve(process.cwd(), 'extension/content/page-observer.js'), 'utf-8');
 
     zip.file('manifest.json', manifestContent);
     zip.file('sidepanel.html', sidepanelHtmlContent);
@@ -396,6 +403,7 @@ apiRouter.get('/extension/bundle', async (req: Request, res: Response) => {
     zip.file('content/dom-reader.js', domReaderContent);
     zip.file('content/form-detector.js', formDetectorContent);
     zip.file('content/form-filler.js', formFillerContent);
+    zip.file('content/page-observer.js', pageObserverContent);
 
     // Include PNG icons if present
     const icon16Path = path.resolve(process.cwd(), 'extension/icons/icon-16.png');
